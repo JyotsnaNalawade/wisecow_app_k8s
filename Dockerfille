@@ -1,0 +1,25 @@
+# Use a lightweight base image with bash / sh
+FROM ubuntu:22.04
+
+# Prevent interactive prompts during install
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    fortune-mod \
+    cowsay \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the application scripts
+WORKDIR /app
+COPY wisecow.sh /app/wisecow.sh
+
+# Make sure script is executable
+RUN chmod +x /app/wisecow.sh
+
+# Expose default port (readme says default is 4499)
+EXPOSE 4499
+
+# Default command
+CMD ["./wisecow.sh"]
