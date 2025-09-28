@@ -30,8 +30,7 @@ jobs:
     - name: Build the Docker image
       run : docker build . --file Dockerfile --tag jyotsna933/wisecow-repo-k8s:1.0
     - name: Push the Docker image
-      run : docker push . --file Dockerfile --tag jyotsna933/wisecow-repo-k8s:1.0
+      run : docker push jyotsna933/wisecow-repo-k8s:1.0
     
     
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag jyotsna933/wisecow-repo-k8s:1.0
+    
