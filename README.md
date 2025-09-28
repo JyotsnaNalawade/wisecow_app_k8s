@@ -26,3 +26,13 @@ Deploy the wisecow application as a k8s app
 1. Github repo containing the app with corresponding dockerfile, k8s manifest, any other artifacts needed.
 2. Github repo with corresponding github action.
 3. Github repo should be kept private and the access should be enabled for following github IDs: nyrahul
+
+
+-----------------------------------------------------------------------
+**screenshot**
+
+<img width="1906" height="1057" alt="Screenshot 2025-09-27 235151" src="https://github.com/user-attachments/assets/bef7d050-2115-4109-9cec-460ea034558b" />
+
+
+application deployed on aws console EC2.
+build docker image through github action.
