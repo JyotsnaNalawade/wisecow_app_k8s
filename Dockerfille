@@ -1,25 +1,22 @@
-# Use a lightweight base image with bash / sh
-FROM ubuntu:22.04
+# Use a lightweight Debian base (has apt)
+FROM debian:bullseye-slim
 
-# Prevent interactive prompts during install
-ENV DEBIAN_FRONTEND=noninteractive
+# Install dependencies: fortune-mod & cowsay
+RUN apt-get update && \
+    apt-get install -y fortune-mod cowsay netcat-openbsd && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    fortune-mod \
-    cowsay \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy the application scripts
+# Set working directory
 WORKDIR /app
-COPY wisecow.sh /app/wisecow.sh
 
-# Make sure script is executable
-RUN chmod +x /app/wisecow.sh
+# Copy the wisecow files to container
+COPY . .
 
-# Expose default port (readme says default is 4499)
+# Make sure the script is executable
+RUN chmod +x wisecow.sh
+
+# Expose the application port (default in script is 4499)
 EXPOSE 4499
 
-# Default command
+# Run the script when container starts
 CMD ["./wisecow.sh"]
